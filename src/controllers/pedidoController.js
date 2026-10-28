@@ -5,13 +5,19 @@ import Joi from 'joi';
 export const pedidoCreateSchema = Joi.object({
   cpf: Joi.string().required().max(25),
   formaPagamento: Joi.string().required().max(100),
-  statusPedido: Joi.string().required().max(15),
+  statusPedido: Joi.string().required().max(25),
+  valorTotal: Joi.string().required().max(25),
+  formaEntrega: Joi.string().required().max(100),
+  idEntregador: Joi.string().required().max(25),
 });
  
 export const pedidoUpdateSchema = Joi.object({
-  cpf: Joi.string().allow(" ").max(25),
-  formaPagamento: Joi.string().allow(" ").max(100),
-  statusPedido: Joi.string().allow(" ").max(15),
+  cpf: Joi.string().max(25),
+  formaPagamento: Joi.string().max(100),
+  statusPedido: Joi.string().max(25),
+  valorTotal: Joi.string().max(25),
+  formaEntrega: Joi.string().max(100),
+  idEntregador: Joi.string().max(25),
 }).min(1);
  
 export const listarPedidos = async (req, res) => {

@@ -2,18 +2,18 @@
 import db from '../db/db.js';
 import bcrypt from 'bcrypt';
  
-export const findAll = async (idPedido, formaPagamento, statusPedido, cpf,) => {
+export const findAll = async (cpf, formaPagamento, statusPedido, idPedido,) => {
   let sql = 'SELECT * FROM pedido';
   const conditions = [];
   const values = [];
  
   if (formaPagamento) {
-    conditions.push('valor = ?');
+    conditions.push('formaPagamento = ?');
     values.push(formaPagamento);
   }
  
   if (statusPedido) {
-    conditions.push('valor = ?');
+    conditions.push('statusPedido = ?');
     values.push(statusPedido);
   
   }
@@ -24,7 +24,7 @@ export const findAll = async (idPedido, formaPagamento, statusPedido, cpf,) => {
   }
  
   if (cpf) {
-    conditions.push('tipo = ?');
+    conditions.push('cpf = ?');
     values.push(cpf);
   }
  
@@ -34,7 +34,7 @@ export const findAll = async (idPedido, formaPagamento, statusPedido, cpf,) => {
  
   const [rows] = await db.query(sql, values);
   return rows;
- 
+
 };
  
 export const create = async (newPedido) => {
